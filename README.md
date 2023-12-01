@@ -20,7 +20,7 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 
 |                                                | part A                              | part B                              |
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
-| [day 1](https://adventofcode.com/2023/day/1)   | [` -.--- ms`](./day01a/src/main.rs) | [` -.--- ms`](./day01b/src/main.rs) |
+| [day 1](https://adventofcode.com/2023/day/1)   | [` 0.017 ms`](./day01a/src/main.rs) | [` -.--- ms`](./day01b/src/main.rs) |
 
 |              | one-by-one (1 CPU core)                  | parallel                                     |
 |:-------------|:-----------------------------------------|:---------------------------------------------|
