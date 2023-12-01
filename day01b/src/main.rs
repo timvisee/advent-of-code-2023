@@ -8,47 +8,21 @@ pub fn main() {
         include_bytes!("../input.txt")
             .split(|b| b == &b'\n')
             .map(|line| {
-                let lhs_d = line
-                    .iter()
-                    .position(|b| b.is_ascii_digit())
-                    .unwrap_or(usize::MAX);
-                let lhs_n = (0..line.len() - 2)
-                    .find_map(|i| {
-                        NUMS.iter()
-                            .enumerate()
-                            .find(|(_, name)| line[i..].starts_with(name))
-                            .map(|(num, _)| (i, num + 1))
-                    })
-                    .unwrap_or((usize::MAX, 0));
-                let lhs = if lhs_d <= lhs_n.0 {
-                    (line[lhs_d] - b'0') as usize
-                } else {
-                    lhs_n.1
-                };
-
-                let rhs_n = line
-                    .iter()
-                    .rev()
-                    .position(|b| b.is_ascii_digit())
-                    .map(|i| line.len() - i - 1)
-                    .unwrap_or_default();
-                let rhs_d = (0..line.len() - 2)
-                    .rev()
-                    .find_map(|i| {
-                        NUMS.iter()
-                            .enumerate()
-                            .find(|(_, name)| line[i..].starts_with(name))
-                            .map(|(num, _)| (i, num + 1))
-                    })
-                    .unwrap_or((0, 0));
-                let rhs = if rhs_n >= rhs_d.0 {
-                    (line[rhs_n] - b'0') as usize
-                } else {
-                    rhs_d.1
-                };
-
-                lhs * 10 + rhs
+                (0..line.len()).find_map(|i| num(line, i)).unwrap() * 10
+                    + (0..line.len()).rev().find_map(|i| num(line, i)).unwrap()
             })
             .sum::<usize>()
     );
+}
+
+#[inline(always)]
+fn num(line: &[u8], i: usize) -> Option<usize> {
+    line[i]
+        .is_ascii_digit()
+        .then_some((line[i] - b'0') as usize)
+        .or(NUMS
+            .iter()
+            .enumerate()
+            .find(|(_, name)| line[i..].starts_with(name))
+            .map(|(num, _)| num + 1))
 }
