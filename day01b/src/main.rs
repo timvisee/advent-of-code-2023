@@ -1,4 +1,4 @@
-const NUMS: &[&[u8]] = &[
+const NUMS: [&[u8]; 9] = [
     b"one", b"two", b"three", b"four", b"five", b"six", b"seven", b"eight", b"nine",
 ];
 
