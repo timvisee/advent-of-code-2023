@@ -6,12 +6,11 @@ pub fn main() {
         include_bytes!("../input.txt")
             .split(|b| b == &b'\n')
             .map(|line| {
-                let mut rgb = [0, 0, 0];
                 line.splitn(2, |b| b == &b':')
                     .nth(1)
                     .unwrap()
                     .split(|b| b == &b',' || b == &b';')
-                    .for_each(|item| {
+                    .fold([0, 0, 0], |mut rgb, item| {
                         let i = match item[1..].splitn(2, |b| *b == b' ').nth(1).unwrap() {
                             b"red" => 0usize,
                             b"green" => 1,
@@ -19,8 +18,10 @@ pub fn main() {
                             _ => unreachable!(),
                         };
                         rgb[i] = rgb[i].max(atoi(&item[1..]).unwrap());
-                    });
-                rgb.iter().product::<u32>()
+                        rgb
+                    })
+                    .iter()
+                    .product::<u32>()
             })
             .sum::<u32>()
     );
