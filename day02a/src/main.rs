@@ -1,5 +1,3 @@
-use atoi::atoi;
-
 pub fn main() {
     println!(
         "{}",
@@ -19,7 +17,7 @@ pub fn main() {
                             b"blue" => 2,
                             _ => unreachable!(),
                         };
-                        rgb[i] = rgb[i].max(atoi(&item[1..]).unwrap());
+                        rgb[i] = rgb[i].max(atoi::atoi(&item[1..]).unwrap());
                         rgb[i] <= 12 + i as u32
                     })
                     .then_some(game_id + 1)
