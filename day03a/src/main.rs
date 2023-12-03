@@ -5,28 +5,26 @@ pub fn main() {
         "{}",
         (0..map.len() - 2)
             .filter(|i| {
-                map.get(i.wrapping_sub(1))
-                    .map_or(true, |b| !b.is_ascii_digit())
-                    && map[*i].is_ascii_digit()
+                map[*i].is_ascii_digit()
+                    && !map.get(i.wrapping_sub(1)).map_or(false, u8::is_ascii_digit)
             })
             .map(|i| {
-                let digits = (i..i + 4)
-                    .position(|blah| !map[blah].is_ascii_digit())
-                    .unwrap();
-                let num: usize = atoi::atoi(&map[i..i + digits]).unwrap();
-                (i, num, digits as isize)
+                let d = (i + 1..i + 4)
+                    .position(|i| !map[i].is_ascii_digit())
+                    .unwrap()
+                    + 1;
+                (i, d as _, atoi::atoi::<usize>(&map[i..i + d]).unwrap())
             })
-            .filter(|(i, _num, digits)| {
-                (-width - 2..-width + *digits)
-                    .chain([-1, *digits])
-                    .chain(width..width + *digits + 2)
+            .filter(|(i, d, _n)| {
+                (-width - 2..-width + *d)
+                    .chain([-1, *d])
+                    .chain(width..width + *d + 2)
                     .any(|j| {
-                        let pos = (*i as isize + j) as usize;
-                        map.get(pos)
+                        map.get((*i as isize + j) as usize)
                             .map_or(false, |b| b != &b'.' && b.is_ascii_punctuation())
                     })
             })
-            .map(|(_i, num, _digits)| num)
+            .map(|(_i, _d, n)| n)
             .sum::<usize>()
     );
 }

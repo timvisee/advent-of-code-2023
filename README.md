@@ -22,7 +22,7 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
 | [day 1](https://adventofcode.com/2023/day/1)   | [` 0.016 ms`](./day01a/src/main.rs) | [` 0.028 ms`](./day01b/src/main.rs) |
 | [day 2](https://adventofcode.com/2023/day/2)   | [` 0.011 ms`](./day02a/src/main.rs) | [` 0.016 ms`](./day02b/src/main.rs) |
-| [day 3](https://adventofcode.com/2023/day/3)   | [` 0.020 ms`](./day03a/src/main.rs) | [` 0.018 ms`](./day03b/src/main.rs) |
+| [day 3](https://adventofcode.com/2023/day/3)   | [` 0.019 ms`](./day03a/src/main.rs) | [` 0.018 ms`](./day03b/src/main.rs) |
 
 |              | one-by-one (1 CPU core)                  | parallel                                     |
 |:-------------|:-----------------------------------------|:---------------------------------------------|
