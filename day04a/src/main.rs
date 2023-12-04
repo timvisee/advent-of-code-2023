@@ -5,7 +5,7 @@ pub fn main() {
     println!(
         "{}",
         input
-            .split(|&c| c == b'\n')
+            .split(|&b| b == b'\n')
             .map(|game| {
                 let win_seq = &game[col + 1..sep];
                 let win_count = game[sep + 1..]

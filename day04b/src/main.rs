@@ -6,7 +6,7 @@ pub fn main() {
     println!(
         "{}",
         input
-            .split(|&c| c == b'\n')
+            .split(|&b| b == b'\n')
             .enumerate()
             .map(|(i, game)| {
                 let factor = factors[i];
