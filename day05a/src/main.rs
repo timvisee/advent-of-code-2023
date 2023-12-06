@@ -4,7 +4,7 @@ pub fn main() {
     let input = include_bytes!("../input.txt");
 
     let mut lines = input.split(|b| b == &b'\n').skip(2);
-    let lists: Vec<Vec<(std::ops::Range<u64>, u64)>> = (0..SECTIONS)
+    let maps: Vec<Vec<(std::ops::Range<u64>, u64)>> = (0..SECTIONS)
         .map(|_| {
             (&mut lines)
                 .skip(1)
@@ -24,10 +24,10 @@ pub fn main() {
         "{}",
         input[SECTIONS..input.iter().position(|b| b == &b'\n').unwrap()]
             .split(|b| b == &b' ')
-            .map(|n| atoi::atoi::<u64>(n).unwrap())
+            .flat_map(atoi::atoi)
             .map(|seed| {
-                lists.iter().fold(seed, |seed, list| {
-                    list.iter()
+                maps.iter().fold(seed, |seed, map| {
+                    map.iter()
                         .find(|(range, _)| range.contains(&seed))
                         .map(|(range, to)| to + seed - range.start)
                         .unwrap_or(seed)
