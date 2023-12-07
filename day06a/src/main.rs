@@ -14,7 +14,7 @@ pub fn main() {
             )
             .map(|(t, d)| {
                 // Modified quadratic formula: <https://en.wikipedia.org/wiki/Quadratic_formula>
-                let a = (t - f32::sqrt((t * t - 4 * d) as f32) as usize) / 2;
+                let a = (t - f64::sqrt((t * t - 4 * d) as f64) as usize) / 2;
                 let b = t - a;
                 b - (b * (t - b) <= d) as usize - a - (a * (t - a) <= d) as usize + 1
             })

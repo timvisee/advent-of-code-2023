@@ -19,7 +19,7 @@ pub fn main() {
     .unwrap();
 
     // Modified quadratic formula: <https://en.wikipedia.org/wiki/Quadratic_formula>
-    let a = (time - f32::sqrt((time * time - 4 * dist) as f32) as usize) / 2;
+    let a = (time - f64::sqrt((time * time - 4 * dist) as f64) as usize) / 2;
     let b = time - a;
     println!(
         "{}",
