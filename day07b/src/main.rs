@@ -2,7 +2,7 @@ pub fn main() {
     let mut hands = include_bytes!("../input.txt")
         .split(|b| b == &b'\n')
         .map(|hand| {
-            let (mut power, mut jokers, mut cards) = (0u32, 0u8, [0u8; 13]);
+            let (mut ranks, mut power, mut jokers) = ([0u8; 13], 0, 0);
             for i in 0..5 {
                 let card = match hand[i] {
                     b'A' => 12,
@@ -12,17 +12,17 @@ pub fn main() {
                     b'T' => 9,
                     n => n - b'0' - 1,
                 };
+                ranks[card as usize] += 1 * (card != 0) as u8;
                 power |= (card as u32) << 4 * (4 - i);
                 jokers += 1 * (card == 0) as u8;
-                cards[card as usize] += 1 * (card != 0) as u8;
             }
-            cards.sort_unstable_by(|a, b| b.cmp(a));
-            power |= match cards[0] + jokers {
+            ranks.sort_unstable_by(|a, b| b.cmp(a));
+            power |= match ranks[0] + jokers {
                 5 => 6,
                 4 => 5,
-                3 if cards[1] == 2 => 4,
+                3 if ranks[1] == 2 => 4,
                 3 => 3,
-                2 if cards[1] == 2 => 2,
+                2 if ranks[1] == 2 => 2,
                 2 => 1,
                 _ => 0,
             } << 29;
