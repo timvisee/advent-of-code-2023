@@ -24,7 +24,7 @@ pub fn main() {
                     .scan(node, |node, step| {
                         let (l, r) = map[*node as usize];
                         *node = if step == &b'L' { l } else { r };
-                        Some(*node & 63 == (b'Z' - b'0') as u32)
+                        Some(*node & 0b111111 == (b'Z' - b'0') as u32)
                     })
                     .position(|node| node)
                     .unwrap()
