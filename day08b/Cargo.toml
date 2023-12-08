@@ -8,5 +8,4 @@ edition = "2021"
 path = "src/main.rs"
 
 [dependencies]
-hashbrown = "0.14"
 num-integer = "0.1"
