@@ -13,6 +13,7 @@ name = "day08b"
 version = "0.1.0"
 dependencies = [
  "num-integer",
+ "took",
 ]
 
 [[package]]
@@ -33,3 +34,9 @@ checksum = "39e3200413f237f41ab11ad6d161bc7239c84dcb631773ccd7de3dfe4b5c267c"
 dependencies = [
  "autocfg",
 ]
+
+[[package]]
+name = "took"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "af1ea65cb083be6f0b13ba9a26eec5eb563e55198e318cbb0f525d593fbd349e"
