@@ -33,6 +33,6 @@ pub fn main() {
                     .unwrap()
                     + 1
             })
-            .fold(1, |acc, x| num_integer::lcm(acc, x))
+            .fold(1, num_integer::lcm)
     );
 }
