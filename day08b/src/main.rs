@@ -27,7 +27,7 @@ pub fn main() {
                     .iter()
                     .cycle()
                     .scan(node, |node, step| {
-                        let (l, r) = map[&node[0..3]];
+                        let (l, r) = map[node];
                         *node = if step == &b'L' { l } else { r };
                         Some(node[2] == b'Z')
                     })
