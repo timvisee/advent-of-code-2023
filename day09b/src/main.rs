@@ -1,4 +1,5 @@
 use lending_iterator::LendingIterator;
+use smallvec::SmallVec;
 
 pub fn main() {
     println!(
@@ -9,8 +10,7 @@ pub fn main() {
                 let mut nums = line
                     .split(|b| b == &b' ')
                     .map(|b| atoi::atoi::<i32>(b).unwrap())
-                    .collect::<Vec<_>>();
-
+                    .collect::<SmallVec<[_; 21]>>();
                 -nums[0]
                     + (0..nums.len())
                         .rev()
@@ -21,7 +21,7 @@ pub fn main() {
                         })
                         .take_while(|(done, _)| !done)
                         .map(|(_, n)| n)
-                        .collect::<Vec<i32>>()
+                        .collect::<SmallVec<[_; 20]>>()
                         .into_iter()
                         .rev()
                         .reduce(|acc, n| n - acc)
