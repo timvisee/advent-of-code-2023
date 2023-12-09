@@ -1,32 +1,37 @@
-use lending_iterator::LendingIterator;
-use smallvec::SmallVec;
+use smallvec::{smallvec, SmallVec};
+
+const MAX: usize = 21;
 
 pub fn main() {
-    println!(
-        "{}",
-        include_bytes!("../input.txt")
-            .split(|b| b == &b'\n')
-            .map(|line| {
-                let mut nums = line
-                    .split(|b| b == &b' ')
-                    .map(|b| atoi::atoi::<i32>(b).unwrap())
-                    .collect::<SmallVec<[_; 21]>>();
-                -nums[0]
-                    + (0..nums.len())
-                        .rev()
-                        .map(|len| {
-                            lending_iterator::windows_mut(&mut nums[..=len])
-                                .for_each(|w: &mut [_; 2]| w[0] = w[1] - w[0]);
-                            (nums[len] == 0, nums[0])
-                        })
-                        .take_while(|(done, _)| !done)
-                        .map(|(_, n)| n)
-                        .collect::<SmallVec<[_; 20]>>()
-                        .into_iter()
-                        .rev()
-                        .reduce(|acc, n| n - acc)
-                        .unwrap()
-            })
-            .sum::<i32>(),
-    );
+    let nums = include_bytes!("../input.txt")
+        .split(|b| b == &b'\n')
+        .map(|line| {
+            line.split(|b| b == &b' ')
+                .map(|b| atoi::atoi::<i64>(b).unwrap())
+                .collect::<SmallVec<[_; MAX]>>()
+        })
+        .collect::<SmallVec<[_; 200]>>();
+
+    // <https://en.wikipedia.org/wiki/Binomial_coefficient#Pascal's_triangle>
+    let mut triang: SmallVec<[SmallVec<[i64; MAX + 1]>; MAX]> = smallvec![smallvec![1]];
+    for i in 0..MAX {
+        let mut next = smallvec![1];
+        next.extend(triang[i].windows(2).map(|w| w[0] + w[1]).chain([1]));
+        triang.push(next);
+    }
+    (0..=MAX)
+        .flat_map(|row| (0..=row).step_by(2).map(move |col| (row, col)))
+        .for_each(|(row, col)| triang[row][col] *= -1);
+
+    let mut answer = 0;
+    for nums in nums {
+        let row = nums.len();
+        answer += nums
+            .iter()
+            .enumerate()
+            .map(|(col, n)| triang[row][col + 1] * n)
+            .sum::<i64>();
+    }
+
+    println!("{answer}");
 }
