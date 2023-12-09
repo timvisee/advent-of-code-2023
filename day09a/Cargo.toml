@@ -3,7 +3,7 @@ name = "day09a"
 version = "0.1.0"
 authors = ["Tim Visee <3a4fb3964f@sinenomine.email>"]
 edition = "2021"
-default-run = "day08b"
+default-run = "day09b"
 
 [lib]
 path = "src/main.rs"
