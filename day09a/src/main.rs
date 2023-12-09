@@ -7,8 +7,8 @@ pub fn main() {
         .split(|b| b == &b'\n')
         .map(|line| {
             line.split(|b| b == &b' ')
-                .map(|b| atoi::atoi::<i64>(b).unwrap())
-                .collect::<SmallVec<[_; MAX]>>()
+                .map(|b| atoi::atoi(b).unwrap())
+                .collect::<SmallVec<[_; 21]>>()
         })
         .collect::<SmallVec<[_; 200]>>();
 
@@ -30,7 +30,7 @@ pub fn main() {
                 let row = nums.len();
                 nums.iter()
                     .enumerate()
-                    .map(|(col, n)| triang[row][col + 1] * n)
+                    .map(|(col, n)| triang[row][col] * n)
                     .sum::<i64>()
                     * if row % 2 == 0 { 1 } else { -1 }
             })

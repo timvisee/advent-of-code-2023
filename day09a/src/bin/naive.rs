@@ -4,7 +4,7 @@ use smallvec::SmallVec;
 pub fn main() {
     println!(
         "{}",
-        include_bytes!("../input.txt")
+        include_bytes!("../../input.txt")
             .split(|b| b == &b'\n')
             .map(|line| {
                 let mut nums = line
