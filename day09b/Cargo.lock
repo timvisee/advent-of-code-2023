@@ -18,163 +18,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
-name = "cfg-if"
-version = "1.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
-
-[[package]]
-name = "crossbeam-deque"
-version = "0.8.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "715e8152b692bba2d374b53d4875445368fdf21a94751410af607a5ac677d1fc"
-dependencies = [
- "cfg-if",
- "crossbeam-epoch",
- "crossbeam-utils",
-]
-
-[[package]]
-name = "crossbeam-epoch"
-version = "0.9.13"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "01a9af1f4c2ef74bb8aa1f7e19706bc72d03598c8a570bb5de72243c7a9d9d5a"
-dependencies = [
- "autocfg",
- "cfg-if",
- "crossbeam-utils",
- "memoffset",
- "scopeguard",
-]
-
-[[package]]
-name = "crossbeam-utils"
-version = "0.8.14"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4fb766fa798726286dbbb842f174001dab8abc7b627a1dd86e0b7222a95d929f"
-dependencies = [
- "cfg-if",
-]
-
-[[package]]
-name = "day01a"
-version = "0.1.0"
-
-[[package]]
-name = "day01b"
-version = "0.1.0"
-
-[[package]]
-name = "day02a"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day02b"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day03a"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day03b"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day04a"
-version = "0.1.0"
-
-[[package]]
-name = "day04b"
-version = "0.1.0"
-
-[[package]]
-name = "day05a"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day05b"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day06a"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day06b"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day07a"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day07b"
-version = "0.1.0"
-dependencies = [
- "atoi",
-]
-
-[[package]]
-name = "day08a"
-version = "0.1.0"
-
-[[package]]
-name = "day08b"
-version = "0.1.0"
-dependencies = [
- "num-integer",
- "took",
-]
-
-[[package]]
-name = "day09a"
-version = "0.1.0"
-dependencies = [
- "atoi",
- "lending-iterator",
-]
-
-[[package]]
 name = "day09b"
 version = "0.1.0"
 dependencies = [
  "atoi",
  "lending-iterator",
 ]
-
-[[package]]
-name = "either"
-version = "1.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "90e5c1c8368803113bf0c9584fc495a58b86dc8a29edbf8fe877d21d9507e797"
 
 [[package]]
 name = "ext-trait"
@@ -247,15 +96,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "58093314a45e00c77d5c508f76e77c3396afbbc0d01506e7fae47b018bac2b1d"
 
 [[package]]
-name = "memoffset"
-version = "0.7.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5de893c32cde5f383baa4c04c5d6dbdd735cfd4a794b0debdb2bb1b421da5ff4"
-dependencies = [
- "autocfg",
-]
-
-[[package]]
 name = "never-say-never"
 version = "6.6.666"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -280,16 +120,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "num-integer"
-version = "0.1.45"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "225d3389fb3509a24c93f5c29eb6bde2586b98d9f016636dff58d7c6f7569cd9"
-dependencies = [
- "autocfg",
- "num-traits",
 ]
 
 [[package]]
@@ -332,58 +162,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rayon"
-version = "1.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9c27db03db7734835b3f53954b534c91069375ce6ccaa2e065441e07d9b6cdb1"
-dependencies = [
- "either",
- "rayon-core",
-]
-
-[[package]]
-name = "rayon-core"
-version = "1.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5ce3fb6ad83f861aac485e76e1985cd109d9a3713802152be56c3b1f0e0658ed"
-dependencies = [
- "crossbeam-deque",
- "crossbeam-utils",
-]
-
-[[package]]
-name = "runner"
-version = "0.1.0"
-dependencies = [
- "day01a",
- "day01b",
- "day02a",
- "day02b",
- "day03a",
- "day03b",
- "day04a",
- "day04b",
- "day05a",
- "day05b",
- "day06a",
- "day06b",
- "day07a",
- "day07b",
- "day08a",
- "day08b",
- "day09a",
- "day09b",
- "rayon",
- "took",
-]
-
-[[package]]
-name = "scopeguard"
-version = "1.1.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
-
-[[package]]
 name = "syn"
 version = "1.0.109"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -393,12 +171,6 @@ dependencies = [
  "quote",
  "unicode-ident",
 ]
-
-[[package]]
-name = "took"
-version = "0.1.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "af1ea65cb083be6f0b13ba9a26eec5eb563e55198e318cbb0f525d593fbd349e"
 
 [[package]]
 name = "unicode-ident"
