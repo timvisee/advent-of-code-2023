@@ -3,7 +3,7 @@ pub fn main() {
     let width = map.iter().position(|&b| b == b'\n').unwrap();
     let start = map.iter().position(|&b| b == b'S').unwrap();
 
-    let mut covered = vec![false; (width + 1) * width];
+    let mut covered = vec![false; map.len()];
     let (mut pos, mut dir) = {
         if matches!(map[start - width - 1], b'|' | b'7' | b'F') {
             (start - width - 1, 0)
