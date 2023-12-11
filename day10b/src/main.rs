@@ -6,11 +6,11 @@ pub fn main() {
     let mut covered = vec![false; map.len()];
     let (mut pos, mut dir) = {
         if matches!(map[start - width - 1], b'|' | b'7' | b'F') {
-            (start - width - 1, 0)
+            (start - width - 1, Dir::Up)
         } else if matches!(map[start + width + 1], b'|' | b'L' | b'J') {
-            (start + width + 1, 2)
+            (start + width + 1, Dir::Down)
         } else {
-            (start - 1, 3)
+            (start - 1, Dir::Left)
         }
     };
 
@@ -18,25 +18,25 @@ pub fn main() {
         .position(|_| unsafe {
             *covered.get_unchecked_mut(pos) = true;
             match (map.get_unchecked(pos), dir) {
-                (b'|', 2) => pos += width + 1,
-                (b'|', 0) => pos -= width + 1,
-                (b'-', 3) => pos -= 1,
-                (b'-', 1) => pos += 1,
-                (b'L', 2) | (b'F', 0) => {
+                (b'|', Dir::Down) => pos += width + 1,
+                (b'|', Dir::Up) => pos -= width + 1,
+                (b'-', Dir::Left) => pos -= 1,
+                (b'-', Dir::Right) => pos += 1,
+                (b'L', Dir::Down) | (b'F', Dir::Up) => {
                     pos += 1;
-                    dir = 1;
+                    dir = Dir::Right;
                 }
-                (b'L', 3) | (b'J', 1) => {
+                (b'L', Dir::Left) | (b'J', Dir::Right) => {
                     pos -= width + 1;
-                    dir = 0;
+                    dir = Dir::Up;
                 }
-                (b'7', 0) | (b'J', 2) => {
+                (b'7', Dir::Up) | (b'J', Dir::Down) => {
                     pos -= 1;
-                    dir = 3;
+                    dir = Dir::Left;
                 }
-                (b'7', 1) | (b'F', 3) => {
+                (b'7', Dir::Right) | (b'F', Dir::Left) => {
                     pos += width + 1;
-                    dir = 2;
+                    dir = Dir::Down;
                 }
                 (b'S', _) => return true,
                 (_, _) => unreachable!(),
@@ -58,4 +58,12 @@ pub fn main() {
             })
             .count()
     );
+}
+
+#[derive(Debug, Clone, Copy)]
+pub enum Dir {
+    Up,
+    Down,
+    Left,
+    Right,
 }
