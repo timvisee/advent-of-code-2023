@@ -3,7 +3,7 @@ pub fn main() {
     let width = map.iter().position(|&b| b == b'\n').unwrap();
     let start = map.iter().position(|&b| b == b'S').unwrap();
 
-    let mut covered = vec![false; map.len()];
+    let mut pipes = vec![false; map.len()];
     let (mut pos, mut dir) = {
         if matches!(map[start - width - 1], b'|' | b'7' | b'F') {
             (start - width - 1, Dir::Up)
@@ -16,7 +16,7 @@ pub fn main() {
 
     std::iter::repeat(())
         .position(|_| unsafe {
-            *covered.get_unchecked_mut(pos) = true;
+            *pipes.get_unchecked_mut(pos) = true;
             match (map.get_unchecked(pos), dir) {
                 (b'|', Dir::Down) => pos += width + 1,
                 (b'|', Dir::Up) => pos -= width + 1,
@@ -50,11 +50,11 @@ pub fn main() {
         "{}",
         map.iter()
             .enumerate()
-            .filter(|(pos, cell)| {
-                let pipe = unsafe { *covered.get_unchecked(*pos) };
+            .filter(|(pos, tile)| {
+                let is_pipe = unsafe { *pipes.get_unchecked(*pos) };
                 inside &= pos % (width + 1) != 0;
-                inside ^= pipe && matches!(*cell, b'|' | b'F' | b'7');
-                inside && (!pipe || **cell == b'.') && (pos % (width + 1) != width)
+                inside ^= is_pipe && matches!(*tile, b'|' | b'F' | b'7');
+                inside && (!is_pipe || **tile == b'.') && (pos % (width + 1) != width)
             })
             .count()
     );
