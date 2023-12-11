@@ -1,46 +1,33 @@
+const INC: usize = 1;
+
 pub fn main() {
     let map = include_bytes!("../input.txt");
     let size = map.iter().position(|&b| b == b'\n').unwrap();
-
-    let mut galaxies = map
-        .iter()
+    let (mut xx, mut yy) = (vec![0; size], vec![0; size]);
+    map.iter()
         .enumerate()
         .filter(|(_, &b)| b == b'#')
-        .map(|(pos, _)| (pos % (size + 1), pos / (size + 1)))
-        .collect::<Vec<_>>();
-
-    (0..size)
-        .rev()
-        .filter(|y| {
-            let offset = y * (size + 1);
-            !map[offset..offset + size].iter().any(|&b| b == b'#')
-        })
-        .for_each(|row| {
-            galaxies
-                .iter_mut()
-                .filter(|(_, y)| *y > row)
-                .for_each(|(_, y)| *y += 1);
+        .for_each(|(pos, _)| {
+            xx[pos % (size + 1)] += 1;
+            yy[pos / (size + 1)] += 1;
         });
 
-    (0..size)
-        .rev()
-        .filter(|x| !map.iter().skip(*x).step_by(size + 1).any(|&b| b == b'#'))
-        .for_each(|col| {
-            galaxies
-                .iter_mut()
-                .filter(|(x, _)| *x > col)
-                .for_each(|(x, _)| *x += 1);
-        });
+    println!("{}", dist(&xx) + dist(&yy));
+}
 
-    println!(
-        "{}",
-        (0..galaxies.len() - 1)
-            .flat_map(|a| (a + 1..galaxies.len()).map(move |b| (a, b)))
-            .map(|(a, b)| {
-                let (x1, y1) = galaxies[a];
-                let (x2, y2) = galaxies[b];
-                x1.abs_diff(x2) + y1.abs_diff(y2)
-            })
-            .sum::<usize>()
-    );
+// Using insight from <https://redd.it/18fqxuq>
+#[inline(always)]
+fn dist(counts: &[usize]) -> usize {
+    let (mut gaps, mut sum, mut items, mut dist) = (0, 0, 0, 0);
+    for (i, count) in counts.iter().enumerate() {
+        if *count > 0 {
+            let expanded = i + INC * gaps;
+            dist += count * (items * expanded - sum);
+            sum += count * expanded;
+            items += count;
+        } else {
+            gaps += 1;
+        }
+    }
+    dist
 }
