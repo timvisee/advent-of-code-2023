@@ -14,9 +14,9 @@ Two years ago I did the same, solving everything in under a second:
 
 ## Timings
 
-Here is how long each solution runs. All solutions are measured (non
-scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
-`AMD Ryzen 9 5900X (24) @ 3.7GHz` machine running Linux.
+Here is how long each solution runs with my input. All solutions are measured
+(non scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an `AMD Ryzen
+9 5900X (24) @ 3.7GHz` machine running Linux.
 
 |                                                | part A                              | part B                              |
 |:-----------------------------------------------|:------------------------------------|:------------------------------------|
@@ -38,12 +38,14 @@ scientifically) in [`bench.rs`](./runner/src/bin/bench.rs) on an
 
 ## Run solutions
 
-Each Rust project contains a `input.txt` file, holding the puzzle input. Simply
-run the project to see the solution appear.
+Each Rust project needs a `input.txt` file to run, holding the puzzle input.
+Simply create this file with your input and run the project to see the solution
+appear.
 
 ```bash
-# Switch to day 1a, and run it
+# Switch to day 1a, add input, and run it
 cd day01a
+nano input.txt
 cargo +nightly run --release
 
 # or run everything in parallel
@@ -56,6 +58,13 @@ cargo +nightly run --release --bin bench
 ```
 
 Some solutions require Rust Nightly, that's why `+nightly` is included.
+
+Sadly I cannot include my puzzle input anymore to make each solution easily
+runnable as per Advent of Code
+[FAQ](https://adventofcode.com/about#faq_copying):
+
+> If you're posting a code repository somewhere, please don't include parts of
+> Advent of Code like the puzzle text or your inputs.
 
 ## Other years
 
