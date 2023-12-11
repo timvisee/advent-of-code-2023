@@ -19,7 +19,7 @@ pub fn main() {
             galaxies
                 .iter_mut()
                 .filter(|(_, y)| *y > row)
-                .for_each(|(_, y)| *y += 1);
+                .for_each(|(_, y)| *y += 999_999);
         });
 
     (0..size)
