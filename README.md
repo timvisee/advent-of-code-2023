@@ -68,6 +68,7 @@ runnable as per Advent of Code
 
 ## Other years
 
+- [2024](https://github.com/timvisee/advent-of-code-2024)
 - [2023](https://github.com/timvisee/advent-of-code-2023) _(current)_
 - [2022](https://github.com/timvisee/advent-of-code-2022)
 - [2021](https://github.com/timvisee/advent-of-code-2021)
